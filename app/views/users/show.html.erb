@@ -1,6 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<div >
+  <%#= image_tag(@user.avator.blob, alt: "image.png", width: "200", height: "200")%>
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+</div>
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |

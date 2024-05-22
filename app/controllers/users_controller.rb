@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user, only: [:new, :create]
-  # before_action :redirect_if_authenticated, only: [:new, :create]
+  before_action :redirect_if_authenticated, only: [:new, :create]
 
   # GET /users or /users.json
   def index
@@ -62,7 +62,6 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-      return @user.attributes.except("updated_at", "created_at", "password_digest", "password_reset_token")
     end
 
     # Only allow a list of trusted parameters through.
