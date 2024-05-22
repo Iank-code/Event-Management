@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user, only: [:new, :create]
-  before_action :redirect_if_authenticated, only: [:new, :create]
+  # before_action :redirect_if_authenticated, only: [:new, :create]
 
   # GET /users or /users.json
   def index
