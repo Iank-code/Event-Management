@@ -12,17 +12,17 @@ class ApplicationController < ActionController::Base
         }, status: status
     end
 
-    def current_user
-        @current_user ||= session[:user_id] && User.find_by(id: session[:user_id])
-        @current_user
-    end
+    # def current_user
+    #     @current_user ||= session[:user_id] && User.find_by(id: session[:user_id])
+    #     @current_user
+    # end
 
     def user_signed_in?
-        !current_user.nil?
+        !CheckCurrentUserJob.perform_now(session[:user_id]).nil?
     end
 
     def authenticate_user
-        redirect_to new_user_path, flash: {danger: 'You must be signed in'} if current_user.nil?
+        redirect_to new_user_path, flash: {danger: 'You must be signed in'} if CheckCurrentUserJob.perform_now(session[:user_id]).nil?
     end
 
     def redirect_if_authenticated

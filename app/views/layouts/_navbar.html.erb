@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="child child-1">
-    <h1><%= link_to "PDF DOWNLOAD", root_path %></h1>
+    <h1><%= link_to "Event Management", root_path %></h1>
     <input type="search" class="input" placeholder="Search for books..." />
   </div>
 
@@ -12,8 +12,9 @@
       <%= link_to 'Login', new_session_path, class: 'sign_out', method: :post %>
     <% end %>
     <% if user_signed_in? %>
+      <%= link_to 'Dashboard', dashboard_index_path,class: 'sign_out',  method: :get %>
       <p>
-        Hi <%= @current_user.username%>
+        Hi <%= CheckCurrentUserJob.perform_now(session[:user_id]).username%>
       </p>
       <%= link_to 'Sign Out', signout_path, class: 'sign_out', method: :delete %>
     <% end %>

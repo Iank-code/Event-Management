@@ -2,13 +2,9 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user, only: [:new, :create]
   before_action :redirect_if_authenticated, only: [:new, :create]
 
-  # GET /users or /users.json
-  def index
-    @users = User.all
-  end
-
   # GET /users/1 or /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
