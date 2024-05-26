@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
         }, status: status
     end
 
-    # def current_user
-    #     @current_user ||= session[:user_id] && User.find_by(id: session[:user_id])
-    #     @current_user
-    # end
-
     def user_signed_in?
         !CheckCurrentUserJob.perform_now(session[:user_id]).nil?
     end

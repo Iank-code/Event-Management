@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
+  get 'dashboard/create'
   resources :sessions
   resources :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
